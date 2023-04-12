@@ -10,11 +10,11 @@
     
     function financeServiceIoScriptInjector()
     {
-        $token = get_option('financeserviceio_token');
-
-        if( !empty($token) ) {
+        $settings = get_option('financeServiceIo', []);
+                
+        if( !empty($settings['token']) ) {
         
-            $trackingDefaultsJson = get_option('financeserviceio_tracking_defaults', "{}");    
+            $trackingDefaultsJson = empty($settings['trackingDefaults']) ? "{}" : json_encode($settings['trackingDefaults'], JSON_FORCE_OBJECT);
 
             echo '
                 <script type="text/javascript">
@@ -25,7 +25,7 @@
                         e.async=!0,n=c.getElementsByTagName(f)[0],n.parentNode.insertBefore(e,n))
                     })(window,document,"script","https://tags.financeservice.io/main/main.min.js");                     
                     
-                    financeServiceIo("init", "'. trim($token) .'");     
+                    financeServiceIo("init", "'. trim($settings['token']) .'");     
                     financeServiceIo("setTrackingDefaults", '. $trackingDefaultsJson . ');
                 </script>
             ';

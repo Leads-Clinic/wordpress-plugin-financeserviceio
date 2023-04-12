@@ -14,5 +14,7 @@
 
     function financeServiceIoUninstall()
     {
-        delete_option('financeServiceIo');
+        if( current_user_can('manage_options') ) {
+            delete_option('financeServiceIo');
+        }
     }

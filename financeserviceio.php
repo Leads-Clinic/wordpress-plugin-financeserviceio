@@ -17,6 +17,24 @@
  */
 
 /**
+ * If logged in as admin on the interface initialize the interface.
+ * Everything related to the admin interface is in the /admin folder.
+ * 
+ * /admin/index.php is the admin frontpage. The menu point will be under tools
+ */
+if( is_admin() ) {
+
+    require_once(WP_PLUGIN_DIR . '/financeserviceio/admin/index.php');
+
+    add_action('admin_menu', function(){
+
+        add_submenu_page('tools.php', 'Finance Service Io', 'FinanceServiceIo', 'manage_options', 'financeserviceio', 'financeServiceIoAdminInit', 'dashicons-plugins-checked');
+
+    });
+
+}
+
+/**
  * Inject global FinanceServiceIo script tag in the header
  * 
  * Takes the whitelabel token from the admin interface options.

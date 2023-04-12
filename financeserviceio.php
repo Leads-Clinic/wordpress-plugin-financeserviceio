@@ -18,10 +18,11 @@
      */
 
     require_once( plugin_dir_path(__FILE__) . 'shortcodes.php');
-    require_once( plugin_dir_path(__FILE__) . 'injector.php');
+    require_once( plugin_dir_path(__FILE__) . 'injector.php');    
     
     if( is_admin() ) {
-
+        
         require_once( plugin_dir_path(__FILE__) . 'admin/index.php');
+        require_once( plugin_dir_path(__FILE__) . 'cleanup.php');
         
     }

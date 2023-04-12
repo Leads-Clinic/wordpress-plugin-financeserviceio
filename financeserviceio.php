@@ -24,8 +24,8 @@
  */
 if( is_admin() ) {
 
-    require_once(WP_PLUGIN_DIR . '/wordpress-plugin-financeserviceio/admin/index.php');
-
+    require_once( plugin_dir_path(__FILE__) . 'admin/index.php');
+    
     add_action('admin_menu', function(){
 
         add_submenu_page('tools.php', 'Finance Service Io', 'FinanceServiceIo', 'manage_options', 'financeserviceio', 'financeServiceIoAdminInit', 'dashicons-plugins-checked');

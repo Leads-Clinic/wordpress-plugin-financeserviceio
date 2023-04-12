@@ -24,7 +24,7 @@
  */
 if( is_admin() ) {
 
-    require_once(WP_PLUGIN_DIR . '/financeserviceio/admin/index.php');
+    require_once(WP_PLUGIN_DIR . '/wordpress-plugin-financeserviceio/admin/index.php');
 
     add_action('admin_menu', function(){
 

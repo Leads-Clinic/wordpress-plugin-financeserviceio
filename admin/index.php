@@ -11,7 +11,7 @@
     function financeServiceIoAdminNavigation()
     {
         add_submenu_page(
-            'tools.php',
+            'options-general.php',
             'Finance Service Io',
             'Finance Service Io',
             'manage_options',

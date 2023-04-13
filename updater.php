@@ -16,7 +16,7 @@
         if( $plugin_file == 'wordpress-plugin-financeserviceio/financeserviceio.php' && empty($update) ) {
 
             // Check if we have the github response in the cache already.
-            // We want to protect the Github API and not call more than daily
+            // We want to protect the Github API and not call more than every 12 hrs.
             $releasePackage = get_transient($transientKey);
 
             if( $releasePackage == false ) {
@@ -32,18 +32,18 @@
 
                     $releasePackage = json_decode( wp_remote_retrieve_body($resp), true );
 
-                    set_transient($transientKey, $releasePackage, 3600 * 24);
+                    set_transient($transientKey, $releasePackage, 3600 * 12);
 
                 }
 
             }
 
             // Check if there is a reason to update this plugin
-            $currentVersion = ltrim($plugin_data['Version'], 'v');
-            $latestVersion = ltrim($releasePackage['tag_name'], 'v');            
-
-            if( !empty($currentVersion) && !empty($latestVersion) ) {
-
+            if( is_array($releasePackage) && array_key_exists('tag_name', $releasePackage) ) {
+                
+                $currentVersion = ltrim($plugin_data['Version'], 'v');
+                $latestVersion = ltrim($releasePackage['tag_name'], 'v');            
+            
                 $updateAvailable = version_compare($currentVersion, $latestVersion, '<');
 
                 if( $updateAvailable ){

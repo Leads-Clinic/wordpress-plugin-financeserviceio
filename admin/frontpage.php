@@ -37,7 +37,7 @@
             
             update_option("financeServiceIo", $settings); 
 
-            wp_redirect( admin_url('/tools.php?page=finance-service-io') );
+            wp_redirect( admin_url('/options-general.php?page=finance-service-io') );
             exit;
 
         }
@@ -65,7 +65,7 @@
             <div class="wrap" style="max-width: 1024px;">
                 <h1><?= get_admin_page_title(); ?></h1>
                                                        
-                <form method="POST" action="<?php echo admin_url('/tools.php?page=finance-service-io&save=1'); ?>">                    
+                <form method="POST" action="<?php echo admin_url('/options-general.php?page=finance-service-io&save=1'); ?>">                    
                     <?php wp_nonce_field('financeServiceIo'); ?>
                     
                     <table class="form-table" role="presentation">

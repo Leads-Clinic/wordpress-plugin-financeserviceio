@@ -39,7 +39,7 @@
             }
 
             // Check if there is a reason to update this plugin
-            $currentVersion = $plugin_data['Version'];
+            $currentVersion = ltrim($plugin_data['Version'], 'v');
             $latestVersion = ltrim($releasePackage['tag_name'], 'v');            
 
             if( !empty($currentVersion) && !empty($latestVersion) ) {

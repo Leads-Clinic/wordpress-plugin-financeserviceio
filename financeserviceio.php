@@ -14,7 +14,7 @@
      * Text Domain: financeserviceio
      * License: GPL v2 or later
      * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
-     * Update URI: https://financeservice.io
+     * Update URI: https://github.com/Leads-Clinic/wordpress-plugin-financeserviceio
      */
 
     require_once( plugin_dir_path(__FILE__) . 'shortcodes.php');
@@ -23,6 +23,7 @@
     if( is_admin() ) {
         
         require_once( plugin_dir_path(__FILE__) . 'admin/index.php');
+        require_once( plugin_dir_path(__FILE__) . 'updater.php');
         require_once( plugin_dir_path(__FILE__) . 'cleanup.php');
         
     }

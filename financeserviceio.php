@@ -7,7 +7,7 @@
      * Plugin Name: FinanceServiceIo (Leads Clinic Oy)
      * Plugin URI: https://leadsclinic.com
      * Description: Set up the Leads Clinic Oy whitelabel with easy using this wordpress plugin.
-     * Version: 1.0.1
+     * Version: 1.0.2
      * Requires PHP: 7.2
      * Author: Leads Clinic Oy
      * Author URI: https://leadsclinic.com

@@ -28,21 +28,27 @@
                 ]);        
                 $respCode = wp_remote_retrieve_response_code($resp);            
 
-                if( !is_wp_error($resp) && $respCode >= 200 && $respCode <= 300 ) {
+                if( !is_wp_error($resp) && $respCode >= 200 && $respCode < 300 ) {
 
                     $releasePackage = json_decode( wp_remote_retrieve_body($resp), true );
 
-                    set_transient($transientKey, $releasePackage, 3600 * 12);
-
+                    if( json_last_error() == JSON_ERROR_NONE ) {
+                        set_transient($transientKey, $releasePackage, 3600 * 12);
+                    } else {
+                        unset($releasePackage);
+                    }
+                
                 }
 
             }
 
             // Check if there is a reason to update this plugin
-            if( is_array($releasePackage) && array_key_exists('tag_name', $releasePackage) ) {
+            if( !empty($releasePackage) && array_key_exists('tag_name', $releasePackage) ) {
                 
-                $currentVersion = ltrim($plugin_data['Version'], 'v');
-                $latestVersion = ltrim($releasePackage['tag_name'], 'v');            
+                $stripChars = 'vV ';
+
+                $currentVersion = ltrim($plugin_data['Version'], $stripChars);
+                $latestVersion = ltrim($releasePackage['tag_name'], $stripChars);            
             
                 $updateAvailable = version_compare($currentVersion, $latestVersion, '<');
 
